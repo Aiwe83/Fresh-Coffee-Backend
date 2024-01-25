@@ -14,4 +14,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/categorias', [CategoriaController::class, 'index']);
+//Si estas creando una aplicacion monolitica deberias utilizar este archivo
+ 

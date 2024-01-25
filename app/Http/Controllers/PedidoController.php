@@ -16,7 +16,8 @@ class PedidoController extends Controller
      */
     public function index()
     {
-        return new PedidoCollection(Pedido::with('user')->with('productos')->where('estado', 0)->get()); //Informacion relacionada con un registro
+        //Informacion relacionada con un registro
+        return new PedidoCollection(Pedido::with('user')->with('productos')->where('estado', 0)->get()); 
     }
 
     /**

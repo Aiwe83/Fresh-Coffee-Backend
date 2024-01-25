@@ -13,8 +13,8 @@ class CategoriaController extends Controller
         /*  return response()->json([
             'categorias' => Categoria::all()
         ]); */
-      
-        //Hace lo mismo que la funcion de arriba rertornanado una respuesta tipo json
+
+        //Hace lo mismo que la funcion de arriba rertornanado una respuesta tipo json. En vez de categorias dira data
         return new CategoriaCollection(Categoria::all());
     }
 }

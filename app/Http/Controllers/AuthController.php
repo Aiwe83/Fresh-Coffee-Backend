@@ -9,9 +9,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 
-
+//Controlador Registro
 class AuthController extends Controller
 {
+    //Hacemos los llamados a los Requests
     public function register(RegistroRequest $request)
     {
         //Validar el registro
@@ -21,10 +22,9 @@ class AuthController extends Controller
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => bcrypt($data['password']),
+            'password' => bcrypt($data['password']),//bcrypt nos permite cachear el password
 
         ]);
-
 
         /*  Laravel Sanctum es un paquete de Laravel que proporciona un sistema de autenticación ligero
            para aplicaciones de página única (SPAs), aplicaciones móviles y APIs simples basadas en tokens.
@@ -37,15 +37,17 @@ class AuthController extends Controller
             'user' => $user
         ];
     }
+
+    //Controlador Login
     public function login(LoginRequest $request)
     {
         $data = $request->validated();
 
         //return "Desde aqui login"; /* Comprobamos en la consola network y luego response */
 
-        //Revisar el password
 
-        if (!Auth()->attempt($data)) {
+        //Revisar el password
+        if (!Auth()->attempt($data)) {  
             return response([
                 'errors' => ['El email o el password son incorrectos'],
                 // 422 significa contenido improcesable(422 (Unprocessable Content) y es importante colocar para que el
@@ -54,6 +56,7 @@ class AuthController extends Controller
         }
 
         //Autenticar usuario
+        //Cada vez que iniciamos sesion nos va a generar una token distinto
 
         $user = Auth::user();
 
@@ -62,10 +65,14 @@ class AuthController extends Controller
             'user' => $user
         ];
     }
+
+    //Controlador Logout
     public function logout(Request $request)
     {
         $user = $request->user();
-        $user->currentAccessToken()->delete();
+
+        //Borramos el Token para que no se nos acumulen
+        $user->currentAccessToken()->delete(); 
 
         return [
             'user' => null

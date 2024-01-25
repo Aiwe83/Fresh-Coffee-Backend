@@ -11,7 +11,7 @@ class LoginRequest extends FormRequest
      */
     public function authorize() 
     {
-        return true;
+        return true;//Lo cambiamos a true sino no nos dira que no se puede acceder a ese request
     }
  
     public function rules() 

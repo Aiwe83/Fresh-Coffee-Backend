@@ -10,9 +10,10 @@ class RegistroRequest extends FormRequest
 
     public function authorize()
     {
-        return true;
+        return true; //Lo cambiamos a true sino no nos dira que no se puede acceder a ese request
     }
 
+    //Reglas de Validacion
 
     public function rules()
     {
@@ -20,14 +21,14 @@ class RegistroRequest extends FormRequest
             'name' => ['required', 'string'],
             'email' => ['required', 'email', 'unique:users,email'],
             'password' => [
-                'required',
+                'required', 
                 'confirmed',
-                PasswordRules::min(8)->letters()->symbols()->numbers()
+                PasswordRules::min(8)->letters()->symbols()->numbers() //Le colocamos el nombre que cambiamos arriba
             ],
-
         ];
     }
 
+    //Mensajes
     public function messages()
     {
         return [

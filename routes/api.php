@@ -7,7 +7,6 @@ use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\CategoriaController;
 
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -22,19 +21,42 @@ use App\Http\Controllers\CategoriaController;
 
 //Se colocan en esta parte asi se requiere que el usuario este auteticado
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/user', function (Request $request) {
+
+    //Obtener usuario
+    Route::get('/user', function (Request $request) {//Para poder entrar a esta ruta necesitamos un Token
         return $request->user();
     });
+
+    //Logout
     Route::post('/logout', [AuthController::class, 'logout']);
 
+    /* En vez de utilizar esta forma que utilizariamos para web.
+
+    Route::get('/categorias', [CategoriaController::class, 'index']);
+
+    Es mejor utilizar el metodo apiResource y de esta forma se pueden eliminar
+    los nombres de los controladores quedarian asi:
+
+    Route::apiResource('/categorias', CategoriaController::class); */
+
     //Almacenar Ordenes
-    Route::apiResource('/pedidos', PedidoController::class);
 
-
-    Route::apiResource('/categorias', CategoriaController::class);
-    Route::apiResource('/productos', ProductoController::class);
+   
 
 });
+Route::apiResource('/pedidos', PedidoController::class);
+Route::apiResource('/categorias', CategoriaController::class);
+Route::apiResource('/productos', ProductoController::class);
+
+//Podemos ver los Endpoints de la API
+
+//Route::apiResource('/pedidos', PedidoController::class);
+//Route::apiResource('/categorias', CategoriaController::class);
+//Route::apiResource('/productos', ProductoController::class);
+
+//Si quieres hacer debug de la API saca del middleware la ruta que deseas ver y coloca:
+//Route::apiResource('/categorias', CategoriaController::class);
+//http://localhost/api/productos 
 
 
 //Autentificacion

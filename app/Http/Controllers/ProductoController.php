@@ -15,7 +15,8 @@ class ProductoController extends Controller
     public function index()
     {
         //Obtenemos los productos disponibles y los que no estan desaparecen del fronted 1=disponible 0=no
-        return new ProductoCollection(Producto::where('disponible', 1)->orderBy('id', 'desc')->get());
+        //Tambien podriamos paginar si fuese necesario colocando ->paginate(10) asi tambien tendriamos la logica del frontend
+        return new ProductoCollection(Producto::where('disponible', 1)->orderBy('id', 'DESC')->get());
     }
 
     /**

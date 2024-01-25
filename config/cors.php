@@ -15,6 +15,12 @@ return [
     |
     */
 
+    //CORS (Cross-Origin Resource Sharing) en Laravel es un mecanismo de seguridad que permite a los
+    // navegadores web restringir las solicitudes HTTP realizadas desde scripts en un dominio diferente
+    // al del recurso solicitado. Al crear una API en Laravel, habilitar CORS es beneficioso al permitir
+    // que las aplicaciones frontend, como las desarrolladas en React, puedan realizar solicitudes a la API
+    // desde dominios diferentes al del servidor en el que se encuentra alojada la API.
+
     'paths' => ['api/*', 'sanctum/csrf-cookie'],
 
     'allowed_methods' => ['*'],

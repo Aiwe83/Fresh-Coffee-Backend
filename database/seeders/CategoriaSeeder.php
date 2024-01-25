@@ -12,6 +12,10 @@ class CategoriaSeeder extends Seeder
     /**
      * Run the database seeds.
      */
+
+     //Los Seeders se utilizan para inicializar la base de datos con datos de prueba que permiten 
+     //comprobar la aplicación sin la necesidad de introducir manualmente grandes cantidades de información.
+ 
     public function run(): void
     {
         DB::table('categorias')->insert([

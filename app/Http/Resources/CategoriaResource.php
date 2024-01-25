@@ -13,7 +13,9 @@ class CategoriaResource extends JsonResource
      * @return array<string, mixed>
      */
 
-     //Aqui se colocan las columnas que vamos a retornar y que llaves vamos a tener
+    //Devuelve los datos que se quieren mostrar los demas se ocultan
+    //Aqui se colocan las columnas que vamos a retornar y que llaves vamos a tener osea 
+    //tenemos control total de las respuestas JSON
     public function toArray(Request $request): array
     {
         return [
@@ -22,5 +24,5 @@ class CategoriaResource extends JsonResource
             'icono' => $this->icono
 
         ];
-    }   
+    }
 }
